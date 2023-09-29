@@ -21,7 +21,12 @@ setup(
     entry_points={
         'console_scripts': [
             "img_sub = ros_cv_camera.image_subscriber:main",
-            "img_pub = ros_cv_camera.image_publisher:main"
+            "img_pub = ros_cv_camera.image_publisher:main",
+            "human_faster = ros_cv_camera.human_detection:main",
+            "faster_rcnn_ros_exe = ros_cv_camera.faster_rcnn_ros:main",
+            "yolo_pub = ros_cv_camera.yolov8_ros2_pt:main",
+            "yolo_sub = ros_cv_camera.yolov8_ros2_subscriber:main"
+
         ],
     },
 )

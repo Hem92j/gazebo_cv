@@ -1,0 +1,2 @@
+std_msgs/Header header
+InferenceResult[] faster_rcnn_inference

@@ -40,7 +40,7 @@ def generate_launch_description():
             os.path.join(
                 pkg_gz_ros_camera,
                 'worlds',
-                'demo_world.sdf'
+                'actor_world.sdf'
             )
         ]
     )
@@ -50,7 +50,9 @@ def generate_launch_description():
         package="ros_gz_bridge",
         executable="parameter_bridge",
         arguments=[
-            "/camera@sensor_msgs/msg/Image@ignition.msgs.Image"
+            "/camera@sensor_msgs/msg/Image@ignition.msgs.Image",
+            "/lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan",
+            "/lidar/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked"
         ],
         output="screen"
     )
@@ -65,6 +67,11 @@ def generate_launch_description():
 
     # gazebo to opencv bridge via ros2
     # change the image_topic value as required
+    gz_cv_faster = Node(
+        package="ros_cv_camera",
+        executable="human_faster",
+    )
+
     gz_cv = Node(
         package="ros_cv_camera",
         executable="img_sub",
@@ -79,5 +86,6 @@ def generate_launch_description():
         bridge,
         rviz,
         image_topic_arg,
-        gz_cv
+        # gz_cv,
+        gz_cv_faster
     ])
